@@ -3,9 +3,9 @@ created_at: 2026-03-18T15:40:29+08:00
 author: spencer.w@osbrjp.com
 type: enhancement
 layer: [Domain, Config]
-effort:
-commit_hash:
-category:
+effort: 0.5h
+commit_hash: 9fc9a27
+category: Added
 ---
 
 # Implement Astro integration extras generators (Tailwind CSS, Wrangler)
@@ -135,3 +135,16 @@ Past tickets that touched similar areas:
 - If both Tailwind and Wrangler are selected, magicast will modify `astro.config.mjs` twice sequentially; ensure the second write preserves changes from the first (`src/scaffold.ts` lines 32-39)
 - Consider extracting a helper for the magicast load/modify/write pattern since both generators share it (`src/generators/extras/`)
 - The config-file extras ticket (Prettier, Biome, ESLint) should be implemented first since it is simpler and establishes the devDependencies helper pattern that this ticket can reuse
+
+## Final Report
+
+### Changes Made
+- `src/generators/extras/tailwindcss.ts` — Uses magicast to add tailwind() integration to astro.config.mjs, adds devDeps, creates src/styles/global.css with Tailwind v4 import
+- `src/generators/extras/wrangler.ts` — Uses magicast to set output: "server" and adapter: cloudflare() in astro.config.mjs, adds devDeps, writes wrangler.toml
+
+### Test Plan
+- TypeScript type-check passes (tsc --noEmit)
+- Both generators use magicast loadFile/writeFile for AST-safe config modification
+
+### Release Prep
+- No breaking changes. New functionality only — completes all extras generators.
