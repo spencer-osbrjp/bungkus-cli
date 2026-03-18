@@ -3,9 +3,9 @@ created_at: 2026-03-18T15:32:49+08:00
 author: spencer.w@osbrjp.com
 type: enhancement
 layer: [Domain]
-effort:
-commit_hash:
-category:
+effort: 0.25h
+commit_hash: afb1154
+category: Added
 ---
 
 # Implement base generators for Astro project scaffolding
@@ -131,3 +131,17 @@ This is a greenfield project with only 2 commits (initial commit and base setup)
 - The `downloadTemplate` call may fail if the target directory already exists; consider whether to handle this with a `force` option or pre-check (`src/scaffold.ts` lines 10-16)
 - Error handling for network failures during template download should surface a user-friendly message via `@clack/prompts` rather than raw stack traces (`src/scaffold.ts` lines 27-29)
 - Using synchronous `fs.readFileSync`/`writeFileSync` is acceptable for a CLI tool but could be swapped for async variants for consistency (`src/generators/base/astro-default.ts`)
+
+## Final Report
+
+### Changes Made
+- `src/generators/base/astro-default.ts` — Implemented using `downloadTemplate("gh:withastro/astro/examples/basics")` + package.json name patch
+- `src/generators/base/astro-react.ts` — Implemented using `downloadTemplate("gh:withastro/astro/examples/framework-react")` + package.json name patch
+- `src/generators/base/astro-vue.ts` — Implemented using `downloadTemplate("gh:withastro/astro/examples/framework-vue")` + package.json name patch
+
+### Test Plan
+- TypeScript type-check passes (`tsc --noEmit`)
+- Each generator follows the same pattern: download template via giget, then update package.json name to match project name
+
+### Release Prep
+- No breaking changes. New functionality only — base generators now produce real scaffolded projects instead of no-ops.
