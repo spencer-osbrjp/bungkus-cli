@@ -3,9 +3,9 @@ created_at: 2026-03-18T15:40:28+08:00
 author: spencer.w@osbrjp.com
 type: enhancement
 layer: [Domain, Config]
-effort:
-commit_hash:
-category:
+effort: 0.25h
+commit_hash: 01cfd04
+category: Added
 ---
 
 # Implement config-file extras generators (Prettier, Biome, ESLint)
@@ -137,3 +137,17 @@ Past tickets that touched similar areas:
 - ESLint flat config (`eslint.config.js`) is the modern approach but some Astro plugins may still assume legacy `.eslintrc` format - verify compatibility (`src/generators/extras/eslint.ts`)
 - Package versions in devDependencies should use ranges that are current at implementation time; the speculative patches use placeholder ranges (`src/generators/extras/`)
 - The companion ticket for Tailwind CSS and Wrangler extras handles the more complex generators that require `astro.config.mjs` modification via magicast
+
+## Final Report
+
+### Changes Made
+- `src/generators/extras/prettier.ts` — Adds prettier + prettier-plugin-astro devDeps, writes .prettierrc with Astro parser override
+- `src/generators/extras/biome.ts` — Adds @biomejs/biome devDep, writes biome.json with recommended rules and space indent
+- `src/generators/extras/eslint.ts` — Adds eslint + eslint-plugin-astro + @typescript-eslint/parser devDeps, writes eslint.config.js flat config
+
+### Test Plan
+- TypeScript type-check passes (tsc --noEmit)
+- Each generator follows the same pattern: read package.json, merge devDependencies, write config file
+
+### Release Prep
+- No breaking changes. New functionality only.
