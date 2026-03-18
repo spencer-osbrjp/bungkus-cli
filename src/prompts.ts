@@ -30,17 +30,52 @@ export async function runPrompts(
           ],
         }),
 
-      extras: () =>
-        p.multiselect({
-          message: "Select extras:",
+      css: () =>
+        p.select({
+          message: "Which CSS framework?",
           options: [
             { value: "tailwindcss", label: "Tailwind CSS" },
+            { value: "none", label: "None" },
+          ],
+        }),
+
+      formatter: () =>
+        p.select({
+          message: "Which formatter?",
+          options: [
             { value: "prettier", label: "Prettier" },
             { value: "biome", label: "Biome" },
-            { value: "eslint", label: "ESLint" },
-            { value: "wrangler", label: "Wrangler (Cloudflare)" },
+            { value: "none", label: "None" },
           ],
-          required: false,
+        }),
+
+      linter: () =>
+        p.select({
+          message: "Which linter?",
+          options: [
+            { value: "eslint", label: "ESLint" },
+            { value: "none", label: "None" },
+          ],
+        }),
+
+      deploy: () =>
+        p.select({
+          message: "Deploy target?",
+          options: [
+            { value: "wrangler", label: "Cloudflare (Wrangler)" },
+            { value: "none", label: "None" },
+          ],
+        }),
+
+      animation: () =>
+        p.select({
+          message: "Which animation library?",
+          options: [
+            { value: "motion", label: "Motion (motion.dev)" },
+            { value: "gsap", label: "GSAP" },
+            { value: "animejs", label: "Anime.js" },
+            { value: "none", label: "None" },
+          ],
         }),
     },
     {

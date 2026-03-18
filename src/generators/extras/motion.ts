@@ -1,18 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
-import { downloadTemplate } from "giget";
-import type { Generator } from "../../types";
+import type { Generator } from "../../types.js";
 
-export const astroDefault: Generator = {
-  name: "Astro",
+export const motion: Generator = {
+  name: "Motion",
   run: async (ctx) => {
-    await downloadTemplate("gh:withastro/astro/examples/basics", {
-      dir: ctx.projectDir,
-    });
-
     const pkgPath = path.join(ctx.projectDir, "package.json");
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-    pkg.name = ctx.projectName;
+    pkg.dependencies = {
+      ...pkg.dependencies,
+      motion: "^12",
+    };
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
   },
 };
