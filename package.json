@@ -1,6 +1,6 @@
 {
   "name": "create-bungkus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI tool to quickly scaffold frontend projects with pre-configured tooling",
   "type": "module",
   "bin": {
