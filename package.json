@@ -1,0 +1,28 @@
+{
+  "name": "create-bungkus",
+  "version": "0.0.1",
+  "description": "CLI tool to quickly scaffold frontend projects with pre-configured tooling",
+  "type": "module",
+  "bin": {
+    "create-bungkus": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "files": ["dist"],
+  "keywords": ["cli", "scaffold", "astro", "frontend"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsup": "^8",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10",
+    "commander": "^13",
+    "giget": "^2",
+    "magicast": "^0.3",
+    "picocolors": "^1"
+  }
+}

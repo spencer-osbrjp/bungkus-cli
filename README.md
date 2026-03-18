@@ -1,17 +1,42 @@
-# The OSBR Standard Repository
+# bungkus-cli
 
-A template repository for creating standardized repositories over organization.
+A CLI tool to quickly scaffold frontend projects with pre-configured tooling. Stop wasting time on boilerplate setup — just run one command and start building.
 
-## Getting Started
+## Usage
 
-1. Use this repository as a template for creating new repositories in `osbrjp` organization.
-2. Add branch rulesets (not copied from the standard repository).
-    * `main` and `release` branch should be protected with the following rules:
-        * Require pull request reviews before merging
-        * Require status checks to pass before merging
-3. Invite collaborators by authorizing teams.
-4. Create a new GitHub Projects board by copying 'Standard Project Template'.
-    * Configure a workflow option named 'Auto-add to project' to add issues to the project automatically.
-5. Edit this README.md file to fit the new repository.
+```bash
+npm create bungkus
+# or
+bun create bungkus
+```
 
-You can see [the detail](https://osbrjp.github.io/handbook/development-guide.html) of the repository configuration in the handbook.
+## Why
+
+Setting up a new frontend project means configuring the same tools over and over: CSS frameworks, linters, formatters, deployment tools. `bungkus-cli` bundles all of that into a single command so you can go from zero to a fully configured project in seconds.
+
+## Tech Stack
+
+- **TypeScript** — type safety, better DX
+- **clack** (`@clack/prompts`) — interactive CLI prompts
+- **commander** — command and argument parsing
+- **giget** — download templates from git repos
+- **picocolors** — terminal colors
+- **magicast** — programmatically modify JS/TS config files
+- **tsup** — bundle the CLI for distribution
+
+## Roadmap
+
+### v1 — Astro
+
+- Astro project scaffolding
+- Frontend tooling: Tailwind CSS, vanilla CSS, shadcn, Prettier, Biome, ESLint
+- Cloudflare Wrangler integration
+
+### v2 — Frameworks
+
+- Vue (Nuxt) and React (Next.js) project bases
+- AI-assisted development with Claude MD
+
+### v3 — Full Stack
+
+- Backend integration to support full-stack project scaffolding
