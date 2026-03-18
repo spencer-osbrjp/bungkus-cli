@@ -4,6 +4,9 @@ import { prettier } from "./prettier";
 import { biome } from "./biome";
 import { eslint } from "./eslint";
 import { wrangler } from "./wrangler";
+import { motion } from "./motion";
+import { gsap } from "./gsap";
+import { animejs } from "./animejs";
 
 export const extraGenerators: Record<ExtraKey, Generator> = {
   tailwindcss,
@@ -11,4 +14,7 @@ export const extraGenerators: Record<ExtraKey, Generator> = {
   biome,
   eslint,
   wrangler,
+  motion,
+  gsap,
+  animejs,
 };

@@ -34,6 +34,7 @@ export async function scaffold(options: ScaffoldOptions) {
     options.formatter,
     options.linter,
     options.deploy,
+    options.animation,
   ] as const;
 
   for (const key of selections) {

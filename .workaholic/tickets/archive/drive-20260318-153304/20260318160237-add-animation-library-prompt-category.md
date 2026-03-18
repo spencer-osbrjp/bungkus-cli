@@ -3,9 +3,9 @@ created_at: 2026-03-18T16:02:37+08:00
 author: spencer.w@osbrjp.com
 type: enhancement
 layer: [UX, Domain]
-effort:
-commit_hash:
-category:
+effort: 0.25h
+commit_hash: 90644ee
+category: Added
 ---
 
 # Add animation library prompt category to CLI
@@ -118,3 +118,20 @@ Past tickets that touched similar areas:
 - Motion (motion.dev) was formerly called Framer Motion; the npm package is `motion` (not `framer-motion`) as of the rename (`src/generators/extras/motion.ts`)
 - Anime.js v4 uses the `animejs` npm package name; verify the correct package name and version at implementation time (`src/generators/extras/animejs.ts`)
 - The animation generators only add dependencies to package.json without creating config files, which is simpler than generators like Tailwind CSS or Prettier; this is intentional since animation libraries typically need no project-level configuration (`src/generators/extras/`)
+
+## Final Report
+
+### Changes Made
+- `src/generators/extras/motion.ts` — New generator adding motion ^12 to dependencies
+- `src/generators/extras/gsap.ts` — New generator adding gsap ^3 to dependencies
+- `src/generators/extras/animejs.ts` — New generator adding animejs ^4 to dependencies
+- `src/types.ts` — Added AnimationLibrary type, extended ExtraKey, added animation field
+- `src/prompts.ts` — Added animation select prompt
+- `src/scaffold.ts` — Added options.animation to selections
+- `src/generators/extras/index.ts` — Registered 3 new generators
+
+### Test Plan
+- TypeScript type-check passes (tsc --noEmit)
+
+### Release Prep
+- No breaking changes. New feature adding animation library selection.

@@ -66,6 +66,17 @@ export async function runPrompts(
             { value: "none", label: "None" },
           ],
         }),
+
+      animation: () =>
+        p.select({
+          message: "Which animation library?",
+          options: [
+            { value: "motion", label: "Motion (motion.dev)" },
+            { value: "gsap", label: "GSAP" },
+            { value: "animejs", label: "Anime.js" },
+            { value: "none", label: "None" },
+          ],
+        }),
     },
     {
       onCancel: () => {

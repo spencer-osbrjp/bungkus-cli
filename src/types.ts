@@ -10,7 +10,9 @@ export type Linter = "eslint" | "none";
 
 export type DeployTarget = "wrangler" | "none";
 
-export type ExtraKey = "tailwindcss" | "prettier" | "biome" | "eslint" | "wrangler";
+export type AnimationLibrary = "motion" | "gsap" | "animejs" | "none";
+
+export type ExtraKey = "tailwindcss" | "prettier" | "biome" | "eslint" | "wrangler" | "motion" | "gsap" | "animejs";
 
 export interface ScaffoldOptions {
   name: string;
@@ -19,6 +21,7 @@ export interface ScaffoldOptions {
   formatter: Formatter;
   linter: Linter;
   deploy: DeployTarget;
+  animation: AnimationLibrary;
 }
 
 export interface Generator {
