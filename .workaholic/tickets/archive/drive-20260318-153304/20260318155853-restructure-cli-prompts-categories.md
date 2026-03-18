@@ -3,9 +3,9 @@ created_at: 2026-03-18T15:58:53+08:00
 author: spencer.w@osbrjp.com
 type: refactoring
 layer: [UX, Domain]
-effort:
-commit_hash:
-category:
+effort: 0.25h
+commit_hash: 8d99fbb
+category: Changed
 ---
 
 # Restructure CLI prompts from single extras multiselect to distinct category prompts
@@ -200,3 +200,17 @@ Past tickets that touched similar areas:
 - The current `return options as ScaffoldOptions` cast in prompts.ts will need the new fields to be present in the group result (`src/prompts.ts` line 54)
 - If Biome is selected as formatter, users might still want ESLint for rules Biome does not cover; consider whether to note this in the prompt or leave it as independent choices (`src/prompts.ts`)
 - The `"none"` values never reach generators since scaffold.ts filters them out, but they flow through the type system; ensure no downstream code assumes all `ScaffoldOptions` fields map to generator keys (`src/scaffold.ts` lines 29-45)
+
+## Final Report
+
+### Changes Made
+- `src/types.ts` — Replaced `Extra` union with `CssFramework`, `Formatter`, `Linter`, `DeployTarget` + `ExtraKey`; updated `ScaffoldOptions` fields
+- `src/prompts.ts` — Replaced single multiselect with 4 sequential `p.select()` prompts
+- `src/scaffold.ts` — Iterates category selections, skipping "none" values
+- `src/generators/extras/index.ts` — Updated record key type to `ExtraKey`
+
+### Test Plan
+- TypeScript type-check passes (tsc --noEmit)
+
+### Release Prep
+- Breaking change to `ScaffoldOptions` interface (internal only, no public API consumers yet).

@@ -28,14 +28,21 @@ export async function scaffold(options: ScaffoldOptions) {
   await base.run(ctx);
   s.stop(`${pc.green("✓")} Base template ready`);
 
-  // Run extra generators
-  for (const extra of options.extras) {
-    const generator = extraGenerators[extra];
-    if (!generator) continue;
+  // Run category generators
+  const selections = [
+    options.css,
+    options.formatter,
+    options.linter,
+    options.deploy,
+  ] as const;
 
-    s.start(`Setting up ${pc.cyan(generator.name)}...`);
-    await generator.run(ctx);
-    s.stop(`${pc.green("✓")} ${generator.name} configured`);
+  for (const key of selections) {
+    if (key !== "none") {
+      const generator = extraGenerators[key];
+      s.start(`Setting up ${pc.cyan(generator.name)}...`);
+      await generator.run(ctx);
+      s.stop(`${pc.green("✓")} ${generator.name} configured`);
+    }
   }
 
   p.outro(
